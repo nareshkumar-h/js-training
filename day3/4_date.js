@@ -21,4 +21,4 @@ if (ticketType == "NORMAL"){
 else if (ticketType =="TATKAL"){
     ticketMaxDate = new Date().addDays(2);
 }
-console.log(tatkalMaxDate);
+console.log(ticketMaxDate);
