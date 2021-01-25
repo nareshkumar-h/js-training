@@ -1,0 +1,2 @@
+var cheques = [{ chequeNo: 1, amount: 1000, signature: true, toAccountNo: 1234, chequeDate: "2021-02-01" }, { chequeNo: 2, amount: 1000, signature: true, toAccountNo: null, chequeDate: "2021-02-01" },
+{ chequeNo: 3, amount: 1000, signature: false, toAccountNo: 1234, chequeDate: "2021-67-01" }];
