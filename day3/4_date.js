@@ -8,8 +8,8 @@ Date.prototype.addDays = function(noOfDays){
 }
 
 
-Date.prototype.addMonths = function(noOfDays){
-    this.setDate(this.getDate(), noOfDays);//todo: Implement logic to add no of months
+Date.prototype.addMonths = function(noOfMonths){
+    //todo: Implement logic to add no of months
     return this;
 }
 
