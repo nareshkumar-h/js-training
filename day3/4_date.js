@@ -3,17 +3,21 @@ today.setDate(today.getDate(),2);
 console.log(today);
 
 Date.prototype.addDays = function(noOfDays){
-    this.setDate(this.getDate(), noOfDays);
+    this.setDate(this.getDate() + noOfDays);
     return this;
 }
 
 
 Date.prototype.addMonths = function(noOfMonths){
     //todo: Implement logic to add no of months
+    this.setMonth(this.getMonth()+ noOfMonths);
     return this;
 }
+// Testing
+new Date().addDays(2);
+new Date().addMonths(5);
 
-var ticketType= "NORMAL";
+var ticketType= "TATKAL";
 var ticketMaxDate = null;
 if (ticketType == "NORMAL"){
     ticketMaxDate = new Date().addMonths(5);
