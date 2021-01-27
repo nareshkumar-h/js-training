@@ -1,5 +1,5 @@
 //Passing primitive as argument - copy values - Pass by value
-display(a){
+function display(a){
     a=20;
 }
 let a = 10; 
