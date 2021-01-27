@@ -23,6 +23,7 @@ Ticket.prototype.isValid = function(){
 
 //Testing
 let ticket1 = new Ticket(1,"MAS","HYD","2020-01-25","TATKAL");
+
 let ticket2 = new Ticket(1,"MAS","HYD","2020-01-25");
 let ticket3 = new Ticket("sss");
 console.log(ticket1);
