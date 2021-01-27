@@ -1,7 +1,27 @@
+let trains = [
+    { trainNo: 123, stations:["Salem", "Madurai"] }
+];
+
 let stations = ["Chennai Central","Hosur", "Bangalore","Salem"];
 
 stations.includes("Hosur")
 
+
+let inputStation = "Salem";
+
+let filteredTrains = [];
+for(let t of trains){
+    let exist = false;
+    let stations = t.stations;
+    for(let s of stations){
+        if (s == inputStation){
+            exist = true;
+        }
+    }
+    if(exist){
+        filteredTrains.push(t);
+    }
+}
 
 
 

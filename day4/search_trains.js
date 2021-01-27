@@ -19,6 +19,7 @@ function getDay(date){
     return date.toString().substring(0,3).toUpperCase();
 }
 
+
 function searchTrains(source, destination, journeyDate){
 
     let jDate = new Date(journeyDate);    
@@ -31,7 +32,6 @@ function searchTrains(source, destination, journeyDate){
             filteredTrains.push(t);
         }
         else{
-
             let days = t.type.split(",");
             console.log(days);
             if(days.includes(jDay)){
