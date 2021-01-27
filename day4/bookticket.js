@@ -3,10 +3,10 @@ let stations = [
     {id:2, stationName:"Bangalore", code:"BGL"}
 ];
 
-function isValidStation(stationName){
-    //logic
-    return true;
-}
+// function isValidStation(stationName){
+//     //logic
+//     return true;
+// }
 
 
 function isValidStation(stationName){
