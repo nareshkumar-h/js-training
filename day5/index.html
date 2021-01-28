@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://csy-batch-2021.github.io/trainticketapp/train_search.js"></script>
+</head>
+<body onload="getTrains()">
+    <h3>Search Trains</h3>
+    <form onsubmit="searchTrainsForm()">
+        <label> Source : </label>
+        <input type="text" id="source" > <br/>
+        <label> Destination : </label>
+        <input type="text" id="destination" > <br/>
+        <label> Journey Date : </label>
+        <input type="text" id="journeyDate" > <br/>
+        <button>Submit</button>       
+        <button type="cancel" onclick="getTrains()">Clear</button>        
+    </form>
+    <h3>All Trains</h3>
+
+    <div id="list"></div>
+
+    <h3>Results</h3>
+  
+    <div id="result">
+
+    </div>
+
+    <script>
+
+        function getTrains(){
+            console.log(trains);
+            document.querySelector("#list").innerHTML = JSON.stringify(trains);
+        }
+        function searchTrainsForm(){
+            event.preventDefault();
+            let source = document.querySelector("#source");
+            let destination = document.querySelector("#destination");
+            let journeyDate= document.querySelector("#journeyDate");
+            let results = searchTrains(source,destination, journeyDate);
+            console.log(results);
+            document.querySelector("#result").innerHTML = JSON.stringify(results);
+        }
+    </script>
+</body>
+</html>
