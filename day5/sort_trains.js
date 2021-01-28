@@ -10,9 +10,32 @@ var trainSchedules = [
     {trainNo: 123, type:"DAILY",timings: "23:30"},
     {trainNo:124, type:"MON,THU,WED",timings: "14:30"},
     {trainNo:125, type:"MON", timings: "10:00"},
-    {trainNo:126, type:"MON", timings: "15:00"},
-    {trainNo:127, type:"MON", timings: "10:00"},
+    {trainNo:126, type:"MON", timings: "15:00"}
 ];
+
+function getTrainSchedule(trainSchedulesData, trainNo){
+    return trainSchedulesData.find(obj=>obj.trainNo == trainNo);
+}
+
+// trains.map(t=> Object.assign({}, t, getTrainSchedule(t.trainNo)));
+function combineTrainDetails ( trainDetails , trainSchedulesData) {
+
+    let result= [];
+    for(let t of trainDetails){
+        let ts = getTrainSchedule(trainSchedulesData, t.trainNo);
+        if (ts != null){        
+            //let obj = t;
+            //obj["type"] = ts.type;
+            //obj["timings"] = ts.timings;
+            let obj = Object.assign({}, t, ts);
+            result.push(obj);
+        }
+    }
+    return result;
+}
+
+let result = combineTrainDetails(trains, trainSchedules);
+
 //{ trainNo:123, from:"Chennai Central", to:"Bangalore", type:"DAILY", timings:"23:30"}
 
 function sortByTimingsASC(t1,t2){
