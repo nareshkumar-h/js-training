@@ -22,6 +22,7 @@ function bookTicket(source){
     catch(err){
         console.error(err);
         console.log("Please correct the input ticket details");
+        console.error(err.message);
     }    
     finally{
         console.log("Finally");
