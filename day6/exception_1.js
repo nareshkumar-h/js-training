@@ -4,7 +4,7 @@ function validateTicket(source){
     if(source ==null){
         throw new Error("Source cannot be empty");   
     }
-    if (source.length < 2)
+    else if (source.length < 2)
     {
         throw new Error("Source must be atleast 2 characters"); 
     }    
@@ -22,7 +22,12 @@ function bookTicket(source){
     catch(err){
         console.error(err);
         console.log("Please correct the input ticket details");
+        console.log(err.name);
         console.error(err.message);
+        if(err.name == "Error"){
+
+        }
+        console.warn("SMS not sent");
     }    
     finally{
         console.log("Finally");

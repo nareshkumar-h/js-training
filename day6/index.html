@@ -8,6 +8,13 @@
 </head>
 <body onload="getTrains()">
     <h3>Search Trains</h3>
+    <div id="errors">
+        <span>Errors</span>
+    <ul>
+        <li>Source cannot be empty</li>
+        <li>JourneyDate must be greater than currentDate</li>
+    </ul>
+</div>
     <form onsubmit="searchTrainsForm()">
         <label> Source : </label>
         <input type="text" id="source" > <br/>
@@ -39,9 +46,17 @@
             let source = document.querySelector("#source");
             let destination = document.querySelector("#destination");
             let journeyDate= document.querySelector("#journeyDate");
-            let results = searchTrains(source,destination, journeyDate);
-            console.log(results);
-            document.querySelector("#result").innerHTML = JSON.stringify(results);
+            try
+            {
+                let results = searchTrains(source,destination, journeyDate);
+                console.log(results);
+                document.querySelector("#result").innerHTML = JSON.stringify(results);
+            }
+            catch(err){
+                let errors = err.message.split(",");
+                console.log("errors", errors);
+                document.querySelector("#errors").innerHTML = err.message;
+            }
         }
     </script>
 </body>
