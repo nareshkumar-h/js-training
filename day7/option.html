@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Search Train</h3>
+
+    <form>
+        <label>From:</label>
+        <select id="source">
+            <option value="MAS">Chennai Central</option>
+            <option value="AVD">Avadi</option>
+        </select>
+
+    </form>
+
+    <script>
+        const stations= [
+            { code: "MAS" , name: "Chennai Central"},
+            { code: "AVD", name: "Avadi"}
+        ];
+
+        function loadSource(){
+            let source = document.querySelector("#source");
+
+            
+            //todo: Implement logic
+        }
+
+        loadSource();
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
