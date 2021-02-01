@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Messages</h1>
+    <div id="messages">
+
+    </div>
+    <form onsubmit="submitForm()" action="nextpage.html">
+        <input type="text" placeholder="Enter Password" id="password">
+        <button>Submit</button>
+    </form>
+
+    <script>
+        function submitForm1(){
+            event.preventDefault();
+            //Get password value
+            let password = document.querySelector("#password").value;
+            console.log("Password", password);
+            alert(password);
+            if(password.length < 8){
+                alert("Password strength is weak");
+            }
+            else{
+                alert("Password strengh is good");
+            }
+        }
+        function submitForm(){
+            event.preventDefault(); //prevent the default behavior
+
+            //Get password value
+            let password = document.querySelector("#password").value;
+            console.log("Password", password);
+            let messageDiv = document.querySelector("#messages");  
+
+            // Check password strength          
+            if(password.length < 8){
+                
+                messageDiv.innerHTML = "Password strength is weak";
+            }
+            else{
+                messageDiv.innerHTML =  "Password strengh is good";
+                window.location.href="next.html";
+            }
+        }
+    </script>
+</body>
+</html>

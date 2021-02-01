@@ -20,4 +20,4 @@ if (noOfTickets < 0){
 
 
 console.log("TicketType", ticketType); //variable not declared. ReferenceTypeError
-s+; //SyntaxError
+//s+; //SyntaxError
