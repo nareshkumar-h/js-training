@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Train Details</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Train No</th>
+                <th>Train Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Timings</th>
+            </tr>
+        </thead>
+        <tbody id="trains-tbl">
+            <!-- <tr>
+                <td>1</td>
+                <td>10001</td>
+                <td>Bangalore Express</td>
+                <td>Bangalore</td>
+                <td>Chennai</td>
+                <td>10:00</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>10002</td>
+                <td>Pandian Express</td>
+                <td>Chennai</td>
+                <td>Madurai</td>
+                <td>16:00</td>
+            </tr> -->
+        </tbody>
+
+    </table>
+    <script>
+
+
+        function loadTrainDetails() {
+            //get train details from rest api - trains = [some data]
+            const trains = [
+                {
+                    trainNo: 10001, trainName: "Bangalore Express", source: "Bangalore",
+                    destination: "Chennai", timings: "10:00"
+                },
+                {
+                    trainNo: 10002, trainName: "Pandian Express", source: "Chennai",
+                    destination: "Madurai", timings: "16:00"
+                },
+                {
+                    trainNo: 10003, trainName: "Charminar Express", source: "Chennai",
+                    destination: "Hyderabad", timings: "21:00"
+                },
+            ];
+
+            const tbody = document.querySelector("#trains-tbl");
+            let content = "";
+            let i = 1;
+            for (let trainObj of trains) {
+
+                let trainStr = ` <tr>
+                <td>${i}</td>
+                <td>${trainObj.trainNo}</td>
+                <td>${trainObj.trainName}</td>
+                <td>${trainObj.source}</td>
+                <td>${trainObj.destination}</td>
+                <td>${trainObj.timings}</td>
+            </tr>`;
+                //console.log(trainStr);
+                content = content + trainStr;
+                i++;
+            }
+            // console.log(content);
+            tbody.innerHTML = content;
+
+        }
+
+        loadTrainDetails();
+
+    </script>
+</body>
+
+</html>

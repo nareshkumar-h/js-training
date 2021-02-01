@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Train Details</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Train No</th>
+                <th>Train Name</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Timings</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="trains-tbl">
+            
+        </tbody>
+
+    </table>
+    <script>
+
+
+        function loadTrainDetails() {
+            //get train details from rest api - trains = [some data]
+            const trains = [
+                {
+                    trainNo: 10001, trainName: "Bangalore Express", source: "Bangalore",
+                    destination: "Chennai", timings: "10:00"
+                },
+                {
+                    trainNo: 10002, trainName: "Pandian Express", source: "Chennai",
+                    destination: "Madurai", timings: "16:00"
+                },
+                {
+                    trainNo: 10003, trainName: "Charminar Express", source: "Chennai",
+                    destination: "Hyderabad", timings: "21:00"
+                },
+            ];
+
+            const tbody = document.querySelector("#trains-tbl");
+            let content = "";
+            let i = 1;
+            for (let trainObj of trains) {
+
+                let tr = document.createElement("tr");
+                
+                //column 1 = sno
+                let td1 = document.createElement("td"); 
+                td1.textContent = i;
+                let td2 = document.createElement("td"); 
+                td2.textContent = trainObj.trainNo;
+                
+                let td3 = document.createElement("td"); 
+
+                let td4 = document.createElement("td"); 
+                let td5 = document.createElement("td"); 
+                let td6 = document.createElement("td"); 
+                let td7 = document.createElement("td"); 
+                let button = document.createElement("button"); 
+                button.textContent = "Book Ticket";
+
+                let link1 = document.createElement("a"); 
+                link1.setAttribute("href", "cancelTicket.html");
+                link1.textContent = "Cancel Ticket";
+
+                td7.append(button);
+                td7.append(link1);
+                //column 2,3,4,5
+
+                //append td's to tr
+                tr.append(td1);
+                tr.append(td2);
+                tr.append(td3);
+                tr.append(td4);
+                tr.append(td5);
+                tr.append(td6);
+                tr.append(td7)
+
+                tbody.append(tr);
+
+                i++;
+            }
+            
+
+        }
+
+        loadTrainDetails();
+
+    </script>
+</body>
+
+</html>
