@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> Login Form</h3>
+
+    
+    <div id="messages">
+        <!-- <span>
+            <font color='green'>Invalid Login </font>
+        </span> -->
+        <!-- <span> <font color='green'> Successfully Loggedin </font> </span>
+        <!-- <span> <font color='red'> Invalid Login credentials </font></span> -->
+    </div>
+
+    <form onsubmit="login()">
+    <input type="text" name="username" id="username" >
+    <button type="submit">Submit</button>
+    </form>
+
+
+    <script>
+        // If the username is "admin", then it is valid, else invalid
+
+        function login(){
+            event.preventDefault();
+            const username = document.querySelector("#username").value;
+            //logic
+
+
+
+        }
+
+    </script>
+</body>
+</html>

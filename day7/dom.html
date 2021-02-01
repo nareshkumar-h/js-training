@@ -11,8 +11,9 @@
 </head>
 <body>
     <h1>Welcome</h1>  
+    
     <div id="section_1" class="section_class">
-        Welcome to Section 1
+        Welcome to Section 1        
     </div>
     <div id="section_2">
         Welcome to Section 2
@@ -25,10 +26,15 @@
         var d5 = document.querySelector("div"); //search by element, returns 1 element
         var d6 = document.querySelectorAll("div"); // search by element, return 1 or more element
         // content
+        var qs1 = document.querySelector("#section_1");
         var c1 = document.getElementById("section_1").innerHTML; // get contents
         var c2  = document.querySelector("div").innerHTML;
 
         document.querySelector("div").innerHTML="Updated content"; //Overwrite content
+
+        // add paragraph to section 1 dynamically
+       // let p1 = document.createElement("p"); //<p></p>
+       // qs1.append(p1);
     </script>
 </body>
 </html>
