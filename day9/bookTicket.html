@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Book ticket
+    <form onsubmit="bookTicketForm()">
+    <!-- Todo: -->
+    <button>Submit</button>
+    </form>
+
+    <script>
+        function bookTicketForm(){
+            event.preventDefault();
+            let ticketObj = { trainNo:123, source:"MAS", destination:"HYD", journeyDate:"2021-02-05"};
+            /*bookTicket(ticketObj).then ( (response)=>{
+                alert("Successfully booked Ticket");
+                //100 ines
+                task1().then(response=>{
+                    task2().then(response=>{
+                        //100
+                    })
+                })
+
+                window.location.href="nextpage.html";
+            });
+            */
+           try{
+            let task1 = await bookTicket();
+            let task2 = await task2(task1);
+            let task3 = await task3(task2);
+           }
+           catch(err){
+               console.error(err);
+           }
+             
+            console.log("Completed");
+            
+
+        }
+        async function task1(){
+
+        }
+
+        async function task2(){
+
+        }
+
+        async function bookTicket(ticketObj){
+            console.log("Book ticket started");
+            //todo:
+            
+            console.log("Book ticket completed");
+        }
+
+
+    </script>
+</body>
+</html>
