@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>List Products</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Product Name</th>
+                <th>Brand Name</th>
+                <th>RAM</th>
+                <th>Rating</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="products-tbl">
+            
+        </tbody>
+
+    </table>
+    <script>
+
+
+
+        //Display the product details  in a table
+        function displayProducts(products) {
+
+            const tbody = document.querySelector("#products-tbl");
+            let content = "";
+            let i = 1;
+            for (let p of products) {
+
+                let temp = ` <tr>
+                <td>${i}</td>
+                <td>${p.name}</td>
+                <td>${p.brandName}</td>
+                <td>${p.ram}</td>
+                <td>${p.rating}</td>
+                <td>${p.price}</td>
+            </tr>`;
+
+                content +=  temp;
+                i++;
+            }
+            // console.log(content);
+            tbody.innerHTML = content;
+
+        }
+
+        // Get the products from the REST API
+        function loadProducts() {
+            const url = "https://shoppingapp-mock.herokuapp.com/api/product";
+            fetch(url).then(res => res.json()).then(response => {
+                console.log(response);
+                displayProducts(response);
+            });
+        }
+        function getAllProducts() {
+            const url = "https://shoppingapp-mock.herokuapp.com/api/products";
+            return fetch(url).then(res => res.json());
+        }
+
+        function searchProducts(filterObj) {
+           
+           return [];
+        }
+
+
+        loadProducts();
+        
+        const productSearchAPI = new ProductSearchAPI();
+        productSearchAPI.getAllProducts().then(res=>{
+            console.log("products", products);
+            displayProducts(response);
+        });
+
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="node_modules/shoppingapp/ProductApi.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    
+    Filter:
+    <form >
+        <label>Brand Name</label><br/>
+        <input type="checkbox" name="brandNames" value="Samsung"> Samsung <br/>
+        <input type="checkbox" name="brandNames" value="Apple"> Apple <br/>
+        <button id="searchBtn"> Search </button>
+    </form>
+    <h3>List Products</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Product Name</th>
+                <th>Brand Name</th>
+                <th>RAM</th>
+                <th>Rating</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="products-tbl">
+            
+        </tbody>
+
+    </table>
+    <script>
+        function onssub(){
+            
+        }
+        </script>
+    <script type="module">
+        import ProductSearchAPI  from '/node_modules/shoppingapp/ProductApi.js';
+
+        //Display the product details  in a table
+        function displayProducts(products) {
+
+            const tbody = document.querySelector("#products-tbl");
+            let content = "";
+            let i = 1;
+            for (let p of products) {
+
+                let temp = ` <tr>
+                <td>${i}</td>
+                <td>${p.name}</td>
+                <td>${p.brandName}</td>
+                <td>${p.ram}</td>
+                <td>${p.rating}</td>
+                <td>${p.price}</td>
+            </tr>`;
+
+                content +=  temp;
+                i++;
+            }
+            // console.log(content);
+            tbody.innerHTML = content;
+
+        }
+
+        // Get the products from the REST API
+        function loadProducts() {
+            const productSearchAPI = new ProductSearchAPI();
+            productSearchAPI.getAllProducts().then(response=>{
+                console.table(response.data);
+                displayProducts(response.data);
+            });
+        }
+        function filterProducts(filterObj) {
+            const productSearchAPI = new ProductSearchAPI();
+            productSearchAPI.searchProducts(filterObj).then(response=>{
+                console.table(response);
+                displayProducts(response);
+            }).catch(err => {
+                console.error(err);
+            });
+        }
+
+        function searchProducts(){
+            let brandNames = [];
+            document.getElementsByName("brandNames").forEach( e=> {
+                if(e.checked){
+                    brandNames.push(e.value);
+                }                
+            });
+
+            let filterObj = {brandName:brandNames};
+            console.log(filterObj);
+            filterProducts(filterObj);
+        }
+       
+        document.querySelector("#searchBtn").addEventListener('click', event=>{
+            event.preventDefault();
+            searchProducts();
+        })
+
+        //loadProducts();
+
+        </script>
+</body>
+
+</html>
