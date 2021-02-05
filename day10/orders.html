@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="node_modules/shoppingapp/ProductApi.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+
+    <h3>Order</h3>
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Order Id</th>
+                <th>Product Id</th>
+                <th>Quantity</th>
+                <th>Total Amount(Rs)</th>
+                <th>Order Status</th>
+                <th>Ordered By</th>
+                <th>Ordered Date</th>
+            </tr>
+        </thead>
+        <tbody id="orders-tbl">
+
+        </tbody>
+
+
+    </table>
+    <script type="module">
+        import ProductOrderAPI from './productOrder.js';
+
+        //Display the product details  in a table
+        function displayOrders(orders) {
+
+            const tbody = document.querySelector("#orders-tbl");
+            tbody.innerHTML= "";
+            let content = "";
+            let i = 1;
+            for (let p of orders) {
+
+                let temp = ` <tr>
+                <td>${i}</td>
+                <td>${p.id}</td>
+                <td>${p.productId}</td>
+                <td>${p.qty}</td>
+                <td>Rs.${p.totalAmount ? p.totalAmount : 0}</td>
+                <td>${p.status}</td>
+                <td>${p.userId}</td>
+                <td>${p.orderedDate}</td>
+                <td><button type="button" id="order-btn" data-product-id=${p.id}>Cancel</button>
+            </tr>`;
+
+                content += temp;
+                i++;
+            }
+            // console.log(content);
+            tbody.innerHTML = content;
+
+            //Assign Listeners
+            document.querySelectorAll("#order-btn").forEach(element => {
+                let productId = parseInt(element.getAttribute("data-product-id"));
+                console.log(productId);
+                element.addEventListener('click', e => {
+                    updateStatus(productId, 'CANCEL');
+                });
+            });
+
+        }
+
+        function updateStatus(orderId, status) {
+            console.log(" order", orderId);
+            let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let userId = loggedInUser.id;
+
+            const productOrderAPI = new ProductOrderAPI();
+            productOrderAPI.orderCancel(orderId).then(response => {
+                console.log(response.data);
+
+            }).catch(err => {
+                console.error(err.message);
+            });
+        }
+
+        function loadAllOrders() {
+            let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let userId = loggedInUser.id;
+
+            const productOrderAPI = new ProductOrderAPI();
+            if (loggedInUser.role == "ADMIN") {
+                productOrderAPI.getAllOrder().then(response => {
+                    console.log(response.data);
+                    displayOrders(response.data);
+
+                }).catch(err => {
+                    console.error(err.message);
+                });
+            }
+            else {
+                productOrderAPI.myOrders(userId).then(response => {
+                    console.log(response);
+                    displayOrders(response);
+
+                }).catch(err => {
+                    console.error(err.message);
+                });
+            }
+
+        }
+
+        loadAllOrders();
+
+    </script>
+</body>
+
+</html>
