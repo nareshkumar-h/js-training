@@ -1,10 +1,10 @@
 var data = [{
     "tableName":"users",
     "fields": [
-        { "fieldName":"id", "type":"number"},
-        { "fieldName":"name", "type":"text", "size":100},
-        { "fieldName":"email", "type":"text", "size":100},
-        { "fieldName":"password", "type":"text", "size":50},
+        { "fieldName":"id", "type":"number", "constraints":["primarykey"]},
+        { "fieldName":"name", "type":"text", "size":100, "constraints":["mandatory"]},
+        { "fieldName":"email", "type":"text", "size":100,"constraints":["mandatory","unique"]},
+        { "fieldName":"password", "type":"text", "size":50, "constraints":["mandatory"]},
     ]
 }];
 
@@ -51,4 +51,7 @@ fs.writeFile("user.sql", content, function(error,resp){
 });
 
 //Expected Output
-//create table users(id int, name varchar(100), email varchar(100), password varchar(100));
+//create table users(id int, name varchar(100) not null, email varchar(100) not null, password varchar(100) not null,
+//primary key (id),
+//unique (email)
+//);
