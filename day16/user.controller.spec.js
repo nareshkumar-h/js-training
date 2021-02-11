@@ -100,11 +100,21 @@ function testGetUsersWithAdminRole() {
         console.log(res.toString());
     });
 }
-function testGetUser() {
+function testGetUserValid() {
 
     const res = new Response();
     let body = { };
     let req = { body: body , params: { id:1}};
+
+    userController.getUser(req, res).then(data => {
+        console.log(res.toString());
+    });
+}
+function testGetUserInValid() {
+
+    const res = new Response();
+    let body = { };
+    let req = { body: body , params: { id:100}};
 
     userController.getUser(req, res).then(data => {
         console.log(res.toString());
@@ -119,4 +129,5 @@ function testGetUser() {
  //testGetUsers();
  //testGetUsersWithRole();
 //testGetUsersWithAdminRole();
-testGetUser();
+// testGetUserValid();
+testGetUserInValid();

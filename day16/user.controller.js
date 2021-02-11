@@ -19,10 +19,16 @@ class UserController{
     async getUser(req,res){
 
         let id = req.params.id;
-        let user = await this.userService.getUser(id);
-        res.json(user);
+        try{
+            let user = await this.userService.getUser(id);
+            res.json(user);
+        }
+        catch(err){
+            res.setStatus(404).json({message : err.message});
+        }
+
     }
-    
+
     async getUsersForRole(req,res){
 
         let users = await this.userService.getUsers();

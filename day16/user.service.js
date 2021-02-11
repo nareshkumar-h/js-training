@@ -22,7 +22,11 @@ class UserService{
     }
     async getUser(id){
         
-        return this.users.find(obj=>obj.id == id);
+        let user =  this.users.find(obj=>obj.id == id);
+        if (user == null){
+            throw new Error("User not found");
+        }
+        return user;
     }
 }
 exports.UserService = UserService;
